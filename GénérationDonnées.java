@@ -35,3 +35,13 @@
        }
 ) 
                                 
+.exec(
+        session -> {
+              //Récupération de l'ancien nombre et ajout de 2 à la valeur
+              int newNombre = session.getInt("newProductCategory") + 2;
+              //Affichage du nouveau nombre
+              System.out.println("Nouveau nombre :" + newNombre);
+              //Enregistrement de la nouvelle valeur dans la variable de session
+              return session.set("newProductCategory", newNombre);
+        }
+)
