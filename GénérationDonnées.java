@@ -45,3 +45,48 @@
               return session.set("newProductCategory", newNombre);
         }
 )
+
+.exec(
+                        session -> {
+                                //Création de la date
+                                String dateString = "01/01/2022 12:00:00";
+                                return session.set("date", dateString);
+                        }
+                )
+.exec(
+        session -> {
+                //Récupération de la date initiale
+                String newDate = session.getString("date");
+                //Séparation de la date en mois/jours/années heures:minutes:secondes
+                String[] parts = newDate.split("[ /:]");
+
+                //Définition des différentes parties
+                int day = Integer.parseInt(parts[0]);
+                int month = Integer.parseInt(parts[1]);
+                int year = Integer.parseInt(parts[2]);
+                int hour = Integer.parseInt(parts[3]);
+                int minute = Integer.parseInt(parts[4]);
+                int second = Integer.parseInt(parts[5]);
+
+                //Affichage de la date initiale
+                System.out.println("Date initiale: " + newDate);
+                //Incrémentation des jours
+                day++;
+                //Faire en sorte que le mois et l'années changent si les jours > 28
+                if (day > 28) {
+                        day = 1;
+                        month++;
+                        if (month > 12) {
+                                month = 1;
+                                year++;
+                        }
+                }
+
+                //Redéfinition de la date avec les nouvelles parties
+                newDate = String.format("%02d/%02d/%04d %02d:%02d:%02d", day, month, year, hour, minute, second);
+                //Affichage de la nouvelle date
+                System.out.println("Nouvelle date: " + newDate);
+                //Enregistrement de la nouvelle date
+                return session.set("date", newDate);
+        }
+)
