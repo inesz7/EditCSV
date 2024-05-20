@@ -70,8 +70,36 @@
 
                 //Affichage de la date initiale
                 System.out.println("Date initiale: " + newDate);
-                //Incrémentation des jours
-                day++;
+
+                //Récupération de la date d'aujourd'hui (ne pas oublier de faire : import java.time.LocalDateTime;)
+                LocalDateTime currentDateTime = LocalDateTime.now();
+
+                //Séparation des différentes parties
+                int currentDay = currentDateTime.getDayOfMonth();
+                int currentMonth = currentDateTime.getMonthValue();
+                int currentYear = currentDateTime.getYear();
+                int currentHour = currentDateTime.getHour();
+                int currentMinute = currentDateTime.getMinute();
+                int currentSecond = currentDateTime.getSecond();
+                
+                //On garde une trace du jour initial
+                int temp = day;
+                
+                //On incrélente le jour seulement si on est à une date infèrieure à aujourd'hui
+                if(year < currentYear){
+                                        day++;
+                                }
+                                else if(year == currentYear){
+                                        if(month < currentMonth){
+                                                day++;
+                                        }
+                                        else if(month == currentMonth){
+                                                if(day < currentDay){
+                                                        day++;
+                                                }
+                                        }
+                                }
+                
                 //Faire en sorte que le mois et l'années changent si les jours > 28
                 if (day > 28) {
                         day = 1;
@@ -81,13 +109,19 @@
                                 year++;
                         }
                 }
-
+                
                 //Redéfinition de la date avec les nouvelles parties
                 newDate = String.format("%02d/%02d/%04d %02d:%02d:%02d", day, month, year, hour, minute, second);
                 //Affichage de la nouvelle date
                 System.out.println("Nouvelle date: " + newDate);
-                //Enregistrement de la nouvelle date
-                return session.set("date", newDate);
+                
+                //Enregistrement de la nouvelle date seulement si la date a changé
+                if(temp != day){
+                        return session.set("date", newDate);
+                }
+                else {
+                        return session;
+                }
         }
 )
 
