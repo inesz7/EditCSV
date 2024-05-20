@@ -135,3 +135,32 @@
 //Boucle doWhileDuring à mettre dans le scenario permettant de run une fois le contenu et de le relancer tant que la condition est respectée (ici tant questatus différent de 200)
 //Le 20 après la virgule est la durée maximale en seconde ce qui évite les boucles infinies
 .doWhileDuring(session -> session.getInt("status") != 200, 20).on(exec(Products.checkProductId));
+
+//Exemple de get avec ofMap et de récupération des données derrière
+private static ChainBuilder get =
+            exec(session -> {
+              List<Integer> allProductIds = session.getList("allProductIds");
+              return session.set("productId", allProductIds.get(new Random().nextInt(allProductIds.size())));
+            })
+              .exec(http("Get product")
+                            .get("/api/product/#{productId}")
+                            .check(jmesPath("id").ofInt().isEL("#{productId}"))
+                            .check(jmesPath("@").ofMap().saveAs("product")));
+
+private static ChainBuilder update =
+                exec(Authentication.authenticate)
+              .exec( session -> {
+                  Map<String, Object> product = session.getMap("product");
+                  return session
+                          .set("productCategoryId", product.get("categoryId"))
+                          .set("productName", product.get("name"))
+                          .set("productDescription", product.get("description"))
+                          .set("productImage", product.get("image"))
+                          .set("productPrice", product.get("price"))
+                          .set("productId", product.get("id"));
+              })
+                    .exec(http("Update product #{productName}")
+                            .put("/api/product/#{productId}")
+                            .headers(authorizationHeaders)
+                            .body(ElFileBody("gatlingdemostoreapi/demostoreapisimulation/create-product.json"))
+                            .check(jmesPath("price").isEL("#{productPrice}")));
