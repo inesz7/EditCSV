@@ -90,3 +90,14 @@
                 return session.set("date", newDate);
         }
 )
+
+//Requête get permettant de récupérer le status et de l'enregistrer en tant que "status dans la session" :
+        private static ChainBuilder checkProductId = 
+                exec(http("Get product")
+                        .get("/api/product/#{checkId}")
+                        .check(status().is(200))
+                        .check((status().saveAs("status"))));
+
+//Boucle doWhileDuring à mettre dans le scenario permettant de run une fois le contenu et de le relancer tant que la condition est respectée (ici tant questatus différent de 200)
+//Le 20 après la virgule est la durée maximale en seconde ce qui évite les boucles infinies
+.doWhileDuring(session -> session.getInt("status") != 200, 20).on(exec(Products.checkProductId));
