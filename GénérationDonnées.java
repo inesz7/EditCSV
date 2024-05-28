@@ -164,3 +164,35 @@ private static ChainBuilder update =
                             .headers(authorizationHeaders)
                             .body(ElFileBody("gatlingdemostoreapi/demostoreapisimulation/create-product.json"))
                             .check(jmesPath("price").isEL("#{productPrice}")));
+
+//Récupérer un id et lui ajouter 1
+private static ChainBuilder get =
+        exec( session -> {
+                List<Integer> allProductIds = session.getList("allProductIds");
+                return session.set("productId", allProductIds.get(new Random().nextInt(allProductIds.size())));
+        })
+        .exec(
+                session -> {
+                        System.out.println("allProductIds captured:" + session.get("allProductIds").toString());
+                        System.out.println("ProductIds selected:" + session.get("productId").toString());
+                        return session;
+                }
+            )
+        //Partie interressante : On récupère l'id et on l'enregistre dans la variable "productCategoryId" (le find servait à rien je l'ai enlever et ça marche sans)
+        .exec(http("Get product")
+              .get("/api/product")
+              .check(jmesPath("[? id == `#{productId}`].categoryId | [0]").saveAs("productCategoryId")));
+        .exec(
+                session -> {
+                        //On print l'id qu'on a récupéré
+                        System.out.println("Product captured:"
+                        + "\n" + "Product category: " + session.get("productCategoryId"));
+                        //On rentre l'id dans une nouvelle variable (l'id enregistré de base est pas un int tout comme toi, du coup tu fais getInt pour le convertir)
+                        int categoryId = session.getInt("productCategoryId");
+                        //On ajoute 1 au int qu'on a créé
+                        categoryId = categoryId + 1;
+                        //On print le int pour voir si ça a marché
+                        System.out.println("Nouvel Id de categorie : " + cateId);
+                        //On enregistre le nouvel id dans la variable de session "productCategoryId"
+                        return session.set("productCategoryId", cateId);
+                })
