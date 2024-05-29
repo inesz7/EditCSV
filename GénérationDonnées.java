@@ -196,3 +196,21 @@ private static ChainBuilder get =
                         //On enregistre le nouvel id dans la variable de session "productCategoryId"
                         return session.set("productCategoryId", cateId);
                 })
+
+//Récupérer la réponse true ou false d'une requête get : 
+private static ChainBuilder get =
+        //On fait la requête get et on enregistre la réponse dans une variable reponse
+        exec(http("Get product")
+             .get("/api/product")
+             .check(bodystring().saveAs("reponse"))
+        .exec(
+                session -> {
+                        //On print la réponse pour voir ce qu'on a
+                        System.out.println("Réponse : " + session.get("reponse"));
+                        return session;
+                });
+
+//Dans le scénario on met une boucle dowhileduring qui vérifie la réponse et relance la requête get jsuqu'à ce qu'elle soit true
+private ScenarioBuilder scn = scenario("DemostoreApiSimulation")
+        .doWhileDuring(session -> session.getString("reponse").equals("false"), 20).on(exec(Products.get)):
+                        
