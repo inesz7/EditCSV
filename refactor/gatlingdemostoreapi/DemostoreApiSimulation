@@ -20,7 +20,7 @@ public class DemostoreApiSimulation extends Simulation {
 
         private static ChainBuilder initSession = exec(session -> session.set("authenticated", false));
 
-        private ScenarioBuilder scn = scenario("gatlingdemostoreapi")
+        private ScenarioBuilder scn = scenario("DemostoreApiSimulation")
                         .exec(initSession)
                         .exec(Categories.list)
                         .pause(2)
