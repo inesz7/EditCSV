@@ -46,22 +46,32 @@ La simulation disponible dans ce projet est un test de performance pour l'applic
 
 ## OWASP ZAP
 
-OWASP ZAP (Zed Attack Proxy) est un outil open-source de sécurité web conçu pour trouver les vulnérabilités dans les applications web. Il permet de scanner les applications pour détecter des failles de sécurité courantes et offre des fonctionnalités d'analyse dynamique pour tester la robustesse des systèmes en temps réel. Pour plus d'information, veuillez consulter le [site officiel de ZAP](https://www.zaproxy.org/).
+OWASP ZAP (Zed Attack Proxy) est un outil open-source de sécurité web conçu pour détecter les vulnérabilités dans les applications web. Il permet de scanner les applications pour identifier les failles de sécurité courantes et offre des fonctionnalités d'analyse dynamique pour tester la robustesse des systèmes en temps réel. Pour plus d'informations, veuillez consulter le [site officiel de ZAP](https://www.zaproxy.org/).
+
+ZAP peut être utilisé en parallèle de Gatling pour scanner automatiquement une application et détecter les vulnérabilités de sécurité potentielles. L'intérêt de combiner ZAP à Gatling est que Gatling peut interagir avec des fonctionnalités avancées de l'application, telles qu'une page de connexion, permettant ainsi de scanner l'ensemble de l'application sans encombre.
 
 ### Installation
 
 ZAP peut être téléchargé en local en suivant [ce lien](https://www.zaproxy.org/download/).
 
-1. Téléchargement et installation
-   - Téléchargez ZAP à partir du lien fournit
-   - Suivez les instructions d'installation
+1. Téléchargement et installation :
+   - Téléchargez ZAP à partir du lien fourni.
+   - Suivez les instructions d'installation.
 
-2. Execution de ZAP
-   - Lancez ZAP une fois que l'installation est terminée
-   - Laissez ZAP ouvert, il écoutera par défault en proxy sur le port 8080
+2. Execution de ZAP :
+   - Lancez ZAP une fois que l'installation est terminée.
+   - Laissez ZAP ouvert, il écoutera par défaut en proxy sur le port 8080.
 
-3. Modification du code gating
-   - Modifiez le code de la simulation gatling afin de décommentariser la ligne 
+3. Modification du code Gatling :
+   - Modifiez le code de la simulation Gatling afin de décommentariser la ligne suivante dans la configuration des protocoles HTTP :
+     ```
+     .proxy(ProxyBuilder.proxyBuilder("localhost", 8080));
+     ```
+   - Exécutez Gatling et lancez le scénario *gatlingdemostoreapi*.
+   - Les requêtes HTTP seront automatiquement captées par ZAP qui vérifiera les vulnérabilités de chacune d'entre elles.
+
+4. Résultats :
+   - Les résultats de la recherche de vulnérabilités sont disponibles directement sur l'application ZAP.
 
 ## Contributor
 
