@@ -8,8 +8,8 @@
 ## Table des matières
 
 * [Gatling](#Gatling)
-* [Contributors](#Contributors)
-* [Contact](#Contact)
+* [OWASP ZAP](#OWASP-ZAP)
+* [Contributor](#Contributor)
 
 ## Gatling
 
@@ -43,6 +43,10 @@ Gatling peut être téléchargé en local en suivant [ce lien](https://docs.gatl
 ### Simulation
 
 La simulation disponible dans ce projet est un test de performance pour l'application *[demostore](https://demostore.gatling.io/)* testant un scénario basique que vont suivre tout les utilisateurs créés.
+
+## OWASP ZAP
+
+OWASP ZAP (Zed Attack Proxy) est un outil open-source de sécurité web conçu pour trouver les vulnérabilités dans les applications web. Il permet de scanner les applications pour détecter des failles de sécurité courantes et offre des fonctionnalités d'analyse dynamique pour tester la robustesse des systèmes en temps réel. Pour plus d'information, veuillez consulter le [site officiel de ZAP](https://www.zaproxy.org/).
 
 ## Contributor
 
