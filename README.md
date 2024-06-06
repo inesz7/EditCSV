@@ -47,7 +47,3 @@ La simulation disponible dans ce projet est un test de performance pour l'applic
 ## Contributor
 
 * [@inesz7](https://github.com/inesz7) 💻
-
-## Contact
-
-* <ines.khoutami@edu.ece.fr>
