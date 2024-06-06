@@ -64,6 +64,7 @@ ZAP peut être téléchargé en local en suivant [ce lien](https://www.zaproxy.o
 
 3. Modification du code Gatling :
    - Modifiez le code de la simulation Gatling afin de décommentariser la ligne suivante dans la configuration des protocoles HTTP :
+     
      ```
      .proxy(ProxyBuilder.proxyBuilder("localhost", 8080));
      ```
