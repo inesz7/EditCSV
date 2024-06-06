@@ -43,3 +43,11 @@ Gatling peut être téléchargé en local en suivant [ce lien](https://docs.gatl
 ### Simulation
 
 La simulation disponible dans ce projet est un test de performance pour l'application *[demostore](https://demostore.gatling.io/)* testant un scénario basique que vont suivre tout les utilisateurs créés.
+
+## Contributor
+
+* [@inesz7](https://github.com/inesz7) 💻
+
+## Contact
+
+* <ines.khoutami@edu.ece.fr>
