@@ -66,7 +66,7 @@ ZAP peut être téléchargé en local en suivant [ce lien](https://www.zaproxy.o
    - Modifiez le code de la simulation Gatling afin de décommentariser la ligne suivante dans la configuration des protocoles HTTP :
      
      ```
-     .proxy(ProxyBuilder.proxyBuilder("localhost", 8080));
+     .proxy(Proxy("localhost", 8080));
      ```
    - Exécutez Gatling et lancez le scénario *gatlingdemostoreapi*.
    - Les requêtes HTTP seront automatiquement captées par ZAP qui vérifiera les vulnérabilités de chacune d'entre elles.
