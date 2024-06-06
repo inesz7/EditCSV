@@ -13,7 +13,7 @@
 
 ## Gatling
 
-Gatling est un outil open-source de test de performance conçu pour simuler des charges élevées sur des applications web afin d'évaluer leur comportement sous stress. Il permet de créer et d'exécuter des tests de charge pour identifier les points faibles, améliorer les performances et garantir la fiabilité des systèmes en production. La version utilisé pour réaliser les tests de performances dans ce projet est la version 3.10.5 de Gatling. Pour plus d'informations veuillez consulter le [site officiel de Gatling](https://gatling.io/).
+Gatling est un outil open-source de test de performance conçu pour simuler des charges élevées sur des applications web afin d'évaluer leur comportement sous stress. Il permet de créer et d'exécuter des tests de charge pour identifier les points faibles, améliorer les performances et garantir la fiabilité des systèmes en production. La version utilisée pour réaliser les tests de performance dans ce projet est la version 3.10.5 de Gatling. Pour plus d'informations, veuillez consulter le [site officiel de Gatling](https://gatling.io/).
 
 ### Installation
 
