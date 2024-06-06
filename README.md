@@ -46,6 +46,8 @@ La simulation disponible dans ce projet est un test de performance pour l'applic
 
 ## OWASP ZAP
 
+![zap logo](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cleanpng.com%2Fpng-owasp-zap-vulnerability-penetration-test-proxy-ser-1728122%2F&psig=AOvVaw3JFBNIGs3z1LWRg0weUK69&ust=1717770132399000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMj-oMeWx4YDFQAAAAAdAAAAABAJ)
+
 OWASP ZAP (Zed Attack Proxy) est un outil open-source de sécurité web conçu pour détecter les vulnérabilités dans les applications web. Il permet de scanner les applications pour identifier les failles de sécurité courantes et offre des fonctionnalités d'analyse dynamique pour tester la robustesse des systèmes en temps réel. Pour plus d'informations, veuillez consulter le [site officiel de ZAP](https://www.zaproxy.org/).
 
 ZAP peut être utilisé en parallèle de Gatling pour scanner automatiquement une application et détecter les vulnérabilités de sécurité potentielles. L'intérêt de combiner ZAP à Gatling est que Gatling peut interagir avec des fonctionnalités avancées de l'application, telles qu'une page de connexion, permettant ainsi de scanner l'ensemble de l'application sans encombre.
