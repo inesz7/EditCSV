@@ -48,6 +48,21 @@ La simulation disponible dans ce projet est un test de performance pour l'applic
 
 OWASP ZAP (Zed Attack Proxy) est un outil open-source de sécurité web conçu pour trouver les vulnérabilités dans les applications web. Il permet de scanner les applications pour détecter des failles de sécurité courantes et offre des fonctionnalités d'analyse dynamique pour tester la robustesse des systèmes en temps réel. Pour plus d'information, veuillez consulter le [site officiel de ZAP](https://www.zaproxy.org/).
 
+### Installation
+
+ZAP peut être téléchargé en local en suivant [ce lien](https://www.zaproxy.org/download/).
+
+1. Téléchargement et installation
+   - Téléchargez ZAP à partir du lien fournit
+   - Suivez les instructions d'installation
+
+2. Execution de ZAP
+   - Lancez ZAP une fois que l'installation est terminée
+   - Laissez ZAP ouvert, il écoutera par défault en proxy sur le port 8080
+
+3. Modification du code gating
+   - Modifiez le code de la simulation gatling afin de décommentariser la ligne 
+
 ## Contributor
 
 * [@inesz7](https://github.com/inesz7) 💻
