@@ -213,4 +213,24 @@ private static ChainBuilder get =
 //Dans le scénario on met une boucle dowhileduring qui vérifie la réponse et relance la requête get jsuqu'à ce qu'elle soit true
 private ScenarioBuilder scn = scenario("DemostoreApiSimulation")
         .doWhileDuring(session -> session.getString("reponse").equals("false"), 20).on(exec(Products.get)):
-                        
+
+//Créer un identifiant unique à partir de la date actuelle
+.exec(
+                session -> {
+                    LocalDateTime currentDateTime = LocalDateTime.now(); //récupérer la date actuelle
+
+                //Séparer la date en plusieurs string
+                    String currentDay = Integer.toString(currentDateTime.getDayOfMonth());
+                    String currentMonth = Integer.toString(currentDateTime.getMonthValue());
+                    String currentYear = Integer.toString(currentDateTime.getYear());
+                    String currentHour = Integer.toString(currentDateTime.getHour());
+                    String currentMinute = Integer.toString(currentDateTime.getMinute());
+                    String currentSecond = Integer.toString(currentDateTime.getSecond());
+
+                //Concaténer les string pour créer un seul identifiant
+                    String newId = currentYear + currentMonth + currentDay + currentHour + currentMinute + currentSecond;
+
+                    System.out.println("Nouvelle identifiant: " + newId);
+
+                    return session.set("newId", newId);
+                })
