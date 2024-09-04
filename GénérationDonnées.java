@@ -234,3 +234,28 @@ private ScenarioBuilder scn = scenario("DemostoreApiSimulation")
 
                     return session.set("newId", newId);
                 })
+
+//Lancer une commande (.exec) en boucle pendant un certain temps
+        //Utiliser during(x).on() avec x le nombre de seconde durant laquelle répéter l'action
+        .during(5).on(
+                //Effectuer les actions avec exec comme d'habitude
+                exec(
+                        session -> {
+                        String dateString = "20/05/2024 12:00:00";
+                        return session.set("date", dateString);
+                    }),
+                //Séparer chaque action par une virgule
+                exec(
+                        session -> {
+                        String sateString = session.getString("dateString")
+                        System.out.println(dateString);
+                    }),
+            )
+
+//Lancer un chainbuilder en boucle pendant un certain temps
+        private ScenarioBuilder scn = scenario("DemostoreApiSimulation")
+                        .exec(initSession)
+                        //on utilise during juste avant d'executer le chainbuilder
+                        .during(5).on(
+                               exec(Categories.list) 
+                        )
